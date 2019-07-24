@@ -38,8 +38,8 @@ import javax.ws.rs.core.Variant.VariantListBuilder;
 
 import org.komodo.relational.WorkspaceManager;
 import org.komodo.relational.dataservice.Dataservice;
+import org.komodo.relational.dataservice.ViewEditorState;
 import org.komodo.relational.profile.Profile;
-import org.komodo.relational.profile.ViewEditorState;
 import org.komodo.rest.AuthHandlingFilter.OAuthCredentials;
 import org.komodo.rest.KomodoRestV1Application.V1Constants;
 import org.komodo.rest.RestBasicEntity.ResourceNotFound;
