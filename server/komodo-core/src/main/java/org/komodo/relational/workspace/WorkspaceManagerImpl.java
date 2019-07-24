@@ -380,39 +380,6 @@ public class WorkspaceManagerImpl extends RelationalObjectImpl implements Relati
     }
 
     /**
-     * @param transaction
-     *        the transaction (cannot be <code>null</code> and must have a state of
-     *        {@link org.komodo.spi.repository.UnitOfWork.State#NOT_STARTED})
-     * @param type
-     *        the lexicon node type name of objects being found
-     * @return the paths of all the objects in the workspace with the specified type (never <code>null</code> but can be empty)
-     * @throws KException
-     *         if an error occurs
-     */
-    public String[] findByType( final UnitOfWork transaction,
-                                final String type) throws KException {
-        return findByType( transaction, type, RepositoryImpl.komodoWorkspacePath(transaction), null, false );
-    }
-
-    /**
-     * @param transaction
-     *        the transaction (cannot be <code>null</code> and must have a state of
-     *        {@link org.komodo.spi.repository.UnitOfWork.State#NOT_STARTED})
-     * @param type
-     *        the lexicon node type name of objects being found
-     * @param includeSubTypes
-     *        determines whether sub types are included in the return
-     * @return the paths of all the objects in the workspace with the specified type (never <code>null</code> but can be empty)
-     * @throws KException
-     *         if an error occurs
-     */
-    public String[] findByType( final UnitOfWork transaction,
-                                final String type,
-                                boolean includeSubTypes) throws KException {
-        return findByType( transaction, type, RepositoryImpl.komodoWorkspacePath(transaction), null, includeSubTypes );
-    }
-
-    /**
      * @param searchPattern pattern to match.  If blank, will match all. 
      * @param transaction
      *        the transaction (cannot be <code>null</code> or have a state that is not

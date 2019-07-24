@@ -35,6 +35,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import org.komodo.metadata.MetadataInstance;
 import org.komodo.relational.profile.Profile;
 import org.komodo.relational.profile.SqlComposition;
 import org.komodo.relational.profile.SqlProjectedColumn;
@@ -59,6 +60,7 @@ import org.komodo.spi.StringConstants;
 import org.komodo.spi.repository.UnitOfWork;
 import org.komodo.spi.repository.UnitOfWork.State;
 import org.komodo.utils.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.teiid.adminapi.impl.ModelMetaData;
 import org.teiid.adminapi.impl.VDBMetaData;
@@ -110,7 +112,9 @@ public final class KomodoUtilService extends KomodoService {
         "teiid-vdb-all-elements.xml", "tweet-example-vdb.xml",
         "northwind.xml", "financials.xml"
     };
-
+    
+    @Autowired
+    private MetadataInstance metadataInstance;
 
     /**
      * @param headers
@@ -517,7 +521,7 @@ public final class KomodoUtilService extends KomodoService {
 				MetadataFactory mf = new MetadataFactory(PREVIEW_VDB, 1,SystemMetadata.getInstance().getRuntimeTypeMap(),m);
 	        	parser.parseDDL(mf, restViewDefinition.getDdl());
 	        	
-				VDBMetaData vdb = this.kengine.getMetadataInstance().getVdb(PREVIEW_VDB).getVDBMetaData();
+				VDBMetaData vdb = metadataInstance.getVdb(PREVIEW_VDB).getVDBMetaData();
 				TransformationMetadata qmi = vdb.getAttachment(TransformationMetadata.class);
 	        	
 				CompositeMetadataStore store = qmi.getMetadataStore();
