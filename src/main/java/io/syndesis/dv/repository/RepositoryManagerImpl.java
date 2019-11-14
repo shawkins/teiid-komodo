@@ -243,4 +243,9 @@ public class RepositoryManagerImpl implements RepositoryManager {
     public byte[] findEditionExport(Edition edition) {
         return this.editionRepository.findExport(edition.getId());
     }
+
+    @Override
+    public Long deleteViewDefinitions(String virtualization) {
+        return this.viewDefinitionRepository.deleteByDataVirtualizationName(virtualization);
+    }
 }

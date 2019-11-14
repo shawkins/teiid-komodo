@@ -606,9 +606,14 @@ public final class DataVirtualizationService extends DvService {
                 if (createVirtualization) {
                     createDataVirtualization(new RestDataVirtualization(toImport));
                 } else {
-                    //delete existing views
-                    //update the description
-                    //set modified to false
+                    //revert
+                    repositoryManager.deleteViewDefinitions(dv.getName());
+                    DataVirtualization existing = repositoryManager.findDataVirtualization(dv.getName());
+                    if (existing == null) {
+                        throw notFound(dv.getName());
+                    }
+                    existing.setDescription(dv.getDescription());
+                    existing.setModified(false);
                 }
 
                 for (ViewDefinitionV1Adapter adapter : dv.getViews()) {

@@ -98,6 +98,7 @@ public interface RepositoryManager {
 
     boolean isNameInUse(String name);
 
+    Long deleteViewDefinitions(String virtualization);
 
     /**
      * Create a new published edition, with an automatically assigned revision number

@@ -38,4 +38,6 @@ public interface ViewDefinitionRepository extends JpaRepository<ViewDefinition, 
     @Query(value = "SELECT name FROM view_definition WHERE dv_name = ?1", nativeQuery = true)
     public List<String> findAllNamesByDataVirtualizationName(String dvName);
 
+    public Long deleteByDataVirtualizationName(String virtualization);
+
 }
